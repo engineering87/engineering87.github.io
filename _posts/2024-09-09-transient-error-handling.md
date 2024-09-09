@@ -11,9 +11,9 @@ Lack of handling these errors reaps corruption of data, loss of information, and
 ### Why is Transient Error Handling Often Ignored?
 Despite its importance, transient error handling is often ignored due to a number of reasons:
 
-1. Underestimation of risk: Transient errors are considered very rare, negligible events by most developers. This may lead to a lack of implementation for error handling or retry logic in the system, which are most important for resilience.
-2. False Assumption of Network Reliability: Many assume that the network is always reliable, and the different components in the distributed system will have no issues communicating with each other. In real-world systems, network failures are inevitable, and proper handling of such failures is an absolute necessity.
-3. Lack of Awareness: Not all developers are aware of the different strategies in error handling, which include exponential backoff retries, circuit breakers, or temporary result caching. Most common reasons for these are a lack of awareness that will eventually translate into an implementation not robust enough.
+1. **Underestimation of risk**: Transient errors are considered very rare, negligible events by most developers. This may lead to a lack of implementation for error handling or retry logic in the system, which are most important for resilience.
+2. **False Assumption of Network Reliability**: Many assume that the network is always reliable, and the different components in the distributed system will have no issues communicating with each other. In real-world systems, network failures are inevitable, and proper handling of such failures is an absolute necessity.
+3. **Lack of Awareness**: Not all developers are aware of the different strategies in error handling, which include exponential backoff retries, circuit breakers, or temporary result caching. Most common reasons for these are a lack of awareness that will eventually translate into an implementation not robust enough.
 
 ### Best Practices for Handling Transient Errors
 In order to guarantee consistency in data and in system resilience within a distributed system, some best practices have to be put in place:
