@@ -24,5 +24,88 @@ In order to guarantee consistency in data and in system resilience within a dist
 4. **Implement transient fault-based caching strategies**: Storing the results of operations that might be affected by transient errors can reduce the number of redundant calls and improve overall performance.
 5. **Monitoring and logging**: It is essential to constantly monitor the system and log all errors, including transient ones, to analyze and handle them more efficiently in the future.
 
+### Solutions in .NET for Handling Transient Errors
+1. Polly - Resilience Library for .NET
+2. Automatic Retries and Transactions with Entity Framework Core
+3. Error Handling in HTTP Calls with HttpClientFactory
+4. Circuit Breaker and Retry Patterns with Microsoft.Extensions
+5. Using Azure SDK and Resilience Tools
+
+#### 1. Polly - Resilience Library for .NET
+Polly is a popular library for resilience and fault handling in .NET. It supports various resilience patterns such as Retry, Circuit Breaker, Fallback, Timeout, and more. Here’s how you can use Polly to handle transient errors:
+
+- Retry Policy: Retries a failed operation a specified number of times with an optional delay between attempts.
+  
+  ```csharp
+  var retryPolicy = Policy
+      .Handle<SqlException>() // Handle specific exceptions
+      .WaitAndRetry(
+          retryCount: 3, // Number of retries
+          sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)), // Exponential backoff
+          onRetry: (exception, timespan, retryCount, context) =>
+          {
+              // Log the retry attempt
+          });
+  ```
+- Circuit Breaker Policy: Prevents further attempts when a series of faults occur, allowing time for recovery.
+  
+  ```csharp
+  var circuitBreakerPolicy = Policy
+      .Handle<Exception>()
+      .CircuitBreaker(
+          exceptionsAllowedBeforeBreaking: 3, // Number of exceptions before breaking
+          durationOfBreak: TimeSpan.FromMinutes(1) // Time before retrying
+      );
+  ```
+- Combining Policies: You can combine multiple policies, such as retry and circuit breaker, to create a more robust error-handling strategy.
+  
+  ```csharp
+  var combinedPolicy = Policy.Wrap(retryPolicy, circuitBreakerPolicy);
+  ```
+
+#### 2. Automatic Retries and Transactions with Entity Framework Core
+Entity Framework Core provides built-in support for handling transient errors with SQL Server and other databases. The `EnableRetryOnFailure` method can be configured when setting up the `DbContext` to automatically retry database operations that fail due to transient issues.
+
+```csharp
+  public class ApplicationDbContext : DbContext
+  {
+      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+      {
+          optionsBuilder.UseSqlServer(
+              "YourConnectionString",
+              sqlServerOptions => sqlServerOptions.EnableRetryOnFailure(
+                  maxRetryCount: 5, // Number of retry attempts
+                  maxRetryDelay: TimeSpan.FromSeconds(10), // Max delay between retries
+                  errorNumbersToAdd: null // Specific SQL error numbers to consider transient
+              ));
+      }
+  }
+```
+
+#### 3. Error Handling in HTTP Calls with HttpClientFactory
+.NET Core provides HttpClientFactory, which integrates well with Polly to handle transient HTTP errors when calling external APIs. This is useful for handling common HTTP errors like timeouts, 500 errors, and more.
+
+```csharp
+  services.AddHttpClient("MyHttpClient", client =>
+  {
+      client.BaseAddress = new Uri("https://example.com/");
+  })
+  .AddTransientHttpErrorPolicy(policyBuilder => 
+      policyBuilder.WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(retryAttempt)));
+```
+
+With `HttpClientFactory`, you can set up a retry policy, a circuit breaker, or any other Polly policies directly within the HTTP client configuration.
+
+#### 4. Circuit Breaker and Retry Patterns with `Microsoft.Extensions`
+.NET offers built-in support for resilience patterns through Microsoft.Extensions.Http and Microsoft.Extensions.DependencyInjection. You can use these extensions to configure a HttpClient with retry and circuit breaker policies using Polly.
+
+#### 5. Using Azure SDK and Resilience Tools
+If you're working with Azure services, the Azure SDKs provide built-in resilience capabilities. For instance:
+
+- Azure Cosmos DB: Automatically retries on transient errors with exponential backoff.
+- Azure Service Bus: Supports retry policies that can be configured to handle transient connectivity issues.
+
+Azure SDKs are designed with resilience in mind, providing a range of configuration options to handle transient failures effectively.
+
 ### Conclusion 
 Handling transient failures is not only a best practice but an essential requirement to build robust and resilient distributed systems. Neglect of this best practice would severely deteriorate data consistency and the stability of the entire system. Therefore, it must be ensured that all software professionals are aware of the importance of properly handling these kinds of errors and that sufficient strategies to mitigate the risks concerned are implemented. Only then are we able to work out systems capable of successfully facing all the complexity and challenges of today's distributed environments.
