@@ -54,8 +54,8 @@ public async Task<IActionResult> UpdateUserProfile(Guid id, [FromBody] UpdateUse
 Here, the PUT method is idempotent because even if the client sends the same request multiple times, the user’s profile will only be updated to the specified values. Repeating the request does not result in duplicate updates or side effects.
 
 ### Example 2: Non-idempotent POST Method and How to Handle It
-The POST method, which is typically used for creating new resources, is not idempotent. For example, sending the same POST request multiple times could result in multiple instances of the resource being created. However, you can make POST requests idempotent by introducing idempotency keys.
-Here’s how to handle idempotent POST requests using an idempotency key:
+The `POST` method, which is typically used for creating new resources, is not idempotent. For example, sending the same `POST` request multiple times could result in multiple instances of the resource being created. However, you can make `POST` requests idempotent by introducing idempotency keys.
+Here’s how to handle idempotent `POST` requests using an idempotency key:
 
 ```csharp
 [HttpPost("orders")]
@@ -84,13 +84,13 @@ public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest reque
 ```
 
 In this example:
-- Clients send an Idempotency-Key header with each POST request. This key uniquely identifies the request.
+- Clients send an Idempotency-Key header with each `POST` request. This key uniquely identifies the request.
 - The server stores this key along with the order. If the same key is received again, the server returns the existing order instead of creating a duplicate.
 
 This approach ensures that even if the client retries the request due to network issues, the server will only create the order once.
 
 ### Example 3: Idempotent DELETE Method
-A DELETE method is typically idempotent. Deleting the same resource multiple times should result in the same outcome — the resource is deleted, and future DELETE requests should return a successful response without changing the state further.
+A `DELETE` method is typically idempotent. Deleting the same resource multiple times should result in the same outcome — the resource is deleted, and future `DELETE` requests should return a successful response without changing the state further.
 
 ```csharp
 [HttpDelete("users/{id}")]
@@ -111,7 +111,7 @@ public async Task<IActionResult> DeleteUser(Guid id)
 In this example, deleting a user multiple times results in the same response: the user is deleted, and subsequent calls return a 204 (No Content) status.
 
 ## Conclusion
-Idempotency plays a key role in creating reliable REST APIs that don't break. When you make your API operations idempotent, your users can try requests again without messing up data or causing unexpected problems. To implement idempotency in .NET, you can use built-in methods like PUT and DELETE, which are already idempotent. For methods that aren't idempotent, like POST, you can use techniques such as idempotency keys.
+Idempotency plays a key role in creating reliable REST APIs that don't break. When you make your API operations idempotent, your users can try requests again without messing up data or causing unexpected problems. To implement idempotency in .NET, you can use built-in methods like `PUT` and `DELETE`, which are already idempotent. For methods that aren't idempotent, like `POST`, you can use techniques such as idempotency keys.
 
 It's just as crucial to keep your API stateless. This goes hand in hand with idempotency allowing each request to be handled on its own. As a result, your system becomes more scalable and can bounce back from issues more .
 When you grasp and put these ideas into action, you can build APIs that are both safe and work well. 
