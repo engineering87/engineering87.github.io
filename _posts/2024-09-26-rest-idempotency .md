@@ -15,9 +15,9 @@ Idempotence in mathematical terms refers to a property of certain operations whe
       `A ∩ A = A`
 2. Functions:
    - A function `f:X→Xf:X→X` is idempotent if:
-     `f(f(x)) = f(x) \quad \text{for all } x \in X`
-   - An example of an idempotent function is the absolute value function `f(x)=∣x∣f(x)=∣x∣` since:
-     `f(f(x)) = |\,|x|\,| = |x|`
+     `f(f(x))=f(x)for all x∈X`
+   - An example of an idempotent function is the absolute value function `f(x)=∣x∣` since:
+     `f(f(x))=∣∣x∣∣=∣x∣`
 
 ### What Is Idempotency in Software Engineering?
 An operation in a REST API is said to be idempotent when making the same request more than once still leads to the same changes and any subsequent request has no side effects. What this means is that the consequence of execution of the operation will always be the same as at the very first time.
