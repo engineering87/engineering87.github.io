@@ -4,20 +4,20 @@ Idempotency is a key principle in the design of RESTful APIs that ensures stabil
 In this article, we will explore what idempotency is, why it’s critical for REST APIs, and how you can implement it in a .NET application. We will also touch on the closely related concept of statelessness, which supports idempotent design in RESTful services.
 
 ## Mathematical Foundations of Idempotence
-Idempotence in mathematical terms refers to a property of certain operations where applying the operation multiple times yields the same result as applying it once. Mathematically, an operation $`f`$ is considered idempotent if, for any element $`x`$ in its domain, the following holds:
-$`f(f(x)) = f(x)`$
+Idempotence in mathematical terms refers to a property of certain operations where applying the operation multiple times yields the same result as applying it once. Mathematically, an operation `f` is considered idempotent if, for any element `x` in its domain, the following holds:
+`f(f(x)) = f(x)`
 
 ### Examples of Idempotence
 1. Set Theory:
-    - The union operation is idempotent because for any set $`A`$:
-      $`A ∪ A = A`$
+    - The union operation is idempotent because for any set `A`:
+      `A ∪ A = A`
     - Similarly, the intersection operation is idempotent:
-      $`A ∩ A = A`$
+      `A ∩ A = A`
 2. Functions:
-   - A function $`f:X→Xf:X→X`$ is idempotent if:
-     $`f(f(x)) = f(x) \quad \text{for all } x \in X`$
-   - An example of an idempotent function is the absolute value function $`f(x)=∣x∣f(x)=∣x∣`$ since:
-     $`f(f(x)) = |\,|x|\,| = |x|`$
+   - A function `f:X→Xf:X→X` is idempotent if:
+     `f(f(x)) = f(x) \quad \text{for all } x \in X`
+   - An example of an idempotent function is the absolute value function `f(x)=∣x∣f(x)=∣x∣` since:
+     `f(f(x)) = |\,|x|\,| = |x|`
 
 ### What Is Idempotency in Software Engineering?
 An operation in a REST API is said to be idempotent when making the same request more than once still leads to the same changes and any subsequent request has no side effects. What this means is that the consequence of execution of the operation will always be the same as at the very first time.
