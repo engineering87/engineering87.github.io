@@ -19,7 +19,7 @@ Some HTTP methods are inherently idempotent, while others are not:
 - **GET**: Always idempotent. Retrieving data doesn't change the system.
 - **PUT**: Idempotent. Updating a resource should always leave it in the same state, regardless of how many times the request is repeated.
 - **DELETE**: Typically idempotent. Deleting a resource multiple times has the same effect as deleting it once (i.e., the resource no longer exists).
-- **POST**: Not idempotent. Creating resources via POST can result in multiple instances being created if the request is repeated.
+- **POST**: Not idempotent. Creating resources via `POST` can result in multiple instances being created if the request is repeated.
 
 ## Statelessness in REST APIs
 When using a stateless API architecture, the system remains stateless. This simply implies that every request coming from a client to the server needs all the required details for the server to comprehend it and execute it the same. The server is not expected to keep any information concerning the client between her requests. Stateless’ ascendency permits better growth and server structure, because session state is not required to be preserved amidst requests.
@@ -52,7 +52,7 @@ public async Task<IActionResult> UpdateUserProfile(Guid id, [FromBody] UpdateUse
 }
 ```
 
-Here, the PUT method is idempotent because even if the client sends the same request multiple times, the user’s profile will only be updated to the specified values. Repeating the request does not result in duplicate updates or side effects.
+Here, the `PUT` method is idempotent because even if the client sends the same request multiple times, the user’s profile will only be updated to the specified values. Repeating the request does not result in duplicate updates or side effects.
 
 ### Example 2: Non-idempotent POST Method and How to Handle It
 The `POST` method, which is typically used for creating new resources, is not idempotent. For example, sending the same `POST` request multiple times could result in multiple instances of the resource being created. However, you can make `POST` requests idempotent by introducing idempotency keys.
