@@ -16,7 +16,7 @@ Idempotency ensures:
 
 ## REST Methods and Idempotency
 Some HTTP methods are inherently idempotent, while others are not:
-- **GET**: Always idempotent. Retrieving data doesn't change the system.
+- **GET**: Always idempotent. Retrieving data doesn't change the system, and one should never apply any special logic that alters this behavior.
 - **PUT**: Idempotent. Updating a resource should always leave it in the same state, regardless of how many times the request is repeated.
 - **DELETE**: Typically idempotent. Deleting a resource multiple times has the same effect as deleting it once (i.e., the resource no longer exists).
 - **POST**: Not idempotent. Creating resources via `POST` can result in multiple instances being created if the request is repeated.
