@@ -1,5 +1,5 @@
 ## The Importance of Lint Commit Messages in Software Development
-In the modern world of software engineering, strict adherence to code quality and consistency is the main factor for any team to work together, for enhancing the project and keeping it over time. 
+In the modern world of software engineering, strict adherence to code quality and clarity is the main factor for any team to work together, for enhancing the project and keeping it over time. 
 One of such work practices that has become quite popular over time is a **lint commit messages**. 
 Code linting in its older meaning is typically referred to software applications for characteristics of enforcing limits to the written source code; however, in this case, it is related more towards parenting the developers regarding how they need to write messages and commit it to the source code in certain structure. 
 In this report, we will look at the definition of lint commit messages, their significance, and the purposes of embedding them into your workflow.
