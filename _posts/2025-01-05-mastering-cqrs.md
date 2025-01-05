@@ -19,4 +19,11 @@ The appeal of CQRS lies in the clarity and flexibility it introduces. By splitti
 But CQRS is not for every project. While it shines in systems with complex business rules or high scalability needs, it might be overkill for simple CRUD applications.
 
 ## Designing a CQRS System
-To demonstrate CQRS in action, let’s implement it in a .NET application that manages a product catalog. We'll separate the commands from the queries.
+Imagine a large-scale event management system that processes events in real time. These events might represent system telemetry, user activity, or log data from various services. The system needs to:
+
+- Write events at a very high frequency to ensure no data is lost, even under heavy load.
+- Retrieve historical event data efficiently for reporting, analytics, or troubleshooting.
+
+In such scenarios, using a single model for both write and read operations can lead to bottlenecks and overly complex code. CQRS allows you to decouple these concerns, optimizing for both scenarios independently.
+
+### Defining the Models
