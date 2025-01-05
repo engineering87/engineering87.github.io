@@ -8,3 +8,12 @@ At its core, CQRS is based on the idea that commands (actions that change the st
 This separation helps you optimize each path for its specific purpose.
 Imagine you're working on a product catalog system. The logic for adding a product (a command) can be quite different from retrieving product details (a query).
 CQRS allows you to address these requirements independently, making your application easier to scale and maintain.
+
+## Why Use CQRS?
+The appeal of CQRS lies in the clarity and flexibility it introduces. By splitting responsibilities, you can:
+
+- Optimize the query side for performance by using read replicas or denormalized views.
+- Scale the write side independently if it has high traffic.
+- Simplify your domain logic by focusing on one responsibility at a time.
+
+But CQRS is not for every project. While it shines in systems with complex business rules or high scalability needs, it might be overkill for simple CRUD applications.
