@@ -17,3 +17,6 @@ The appeal of CQRS lies in the clarity and flexibility it introduces. By splitti
 - Simplify your domain logic by focusing on one responsibility at a time.
 
 But CQRS is not for every project. While it shines in systems with complex business rules or high scalability needs, it might be overkill for simple CRUD applications.
+
+## Designing a CQRS System
+To demonstrate CQRS in action, let’s implement it in a .NET application that manages a product catalog. We'll separate the commands from the queries.
