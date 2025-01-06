@@ -59,8 +59,7 @@ public class AddEventCommandHandler
         {
             Id = command.EventId,
             Name = command.EventName,
-            Date = command.EventDate,
-            Description = command.Description
+            Date = command.EventDate
         };
 
         await _repository.AddEventAsync(newEvent);
@@ -97,7 +96,7 @@ public class GetEventDetailsQueryHandler
         {
             EventId = eventDetails.Id,
             EventName = eventDetails.Name,
-            EventDate = eventDetails.Date,
+            EventDate = eventDetails.Date
         };
     }
 }
