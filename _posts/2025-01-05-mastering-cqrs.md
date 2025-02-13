@@ -1,4 +1,4 @@
-## Mastering CQRS in .NET: A Practical Guide
+# Mastering CQRS in .NET: A Practical Guide
 **Command Query Responsibility Segregation (CQRS)** is a pattern that is commonly encountered while building applications that are easy to maintain and readily scalable, and it is a pattern that we often deal with in application development and maintenance.
 It is a design paradigm that distinguishes between the write and read features of an application, such as making the application perform better, readability of the code, and providing provisions for facilitating complicated business rules as needed.
 We will explore CQRS ideas in this article, as well as how to apply them in practical examples using.NET.
