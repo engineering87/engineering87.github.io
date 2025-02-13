@@ -1,4 +1,4 @@
-## Rate Limiting in .NET APIs: Why, When, and How to Implement It
+# Rate Limiting in .NET APIs: Why, When, and How to Implement It
 In modern distributed systems, APIs are the backbone of an application talking to another. As these APIs start to grow in scale and popularity, their availability and stability become a concern. 
 **Rate limiting** is one of the most efficient ways to protect APIs from misuse, abuse, or even unexpected traffic spikes. 
 This article will explore what rate limiting is, why it is essential, when it should be used, and how to do it in .NET APIs.
