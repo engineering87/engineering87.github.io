@@ -147,6 +147,78 @@ else
 }
 ```
 
+### Dependency Injection (DI)
+❌ Bad Example:
+```csharp
+public class UserService
+{
+    private Database _database = new Database();
+    
+    public void SaveUser(User user)
+    {
+        _database.Save(user);
+    }
+}
+```
+
+✅ Good Example:
+```csharp
+public class UserService
+{
+    private readonly IDatabase _database;
+    
+    public UserService(IDatabase database)
+    {
+        _database = database;
+    }
+    
+    public void SaveUser(User user)
+    {
+        _database.Save(user);
+    }
+}
+```
+
+### Using LINQ for Cleaner Code
+❌ Bad Example:
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+List<int> evenNumbers = new List<int>();
+
+foreach (var number in numbers)
+{
+    if (number % 2 == 0)
+    {
+        evenNumbers.Add(number);
+    }
+}
+```
+
+✅ Good Example:
+```csharp
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+List<int> evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
+```
+
+### Using `async` and `await` for Better Performance
+❌ Bad Example:
+```csharp
+public string GetData()
+{
+    Task.Delay(5000).Wait();
+    return "Data retrieved";
+}
+```
+
+✅ Good Example:
+```csharp
+public async Task<string> GetDataAsync()
+{
+    await Task.Delay(5000);
+    return "Data retrieved";
+}
+```
+
 ## Conclusion
 Applying clean code concepts to.NET improves the quality of the software, makes the codebase easier to comprehend and manage, and enables teamwork. 
 Adhering to best practices such as significant names, the Single Responsibility Principle, and exception handling improves the readability, maintainability, and performance of code.
