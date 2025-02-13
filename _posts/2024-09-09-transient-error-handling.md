@@ -1,4 +1,4 @@
-## Transient Error Handling: The Importance of a Commonly Overlooked Practice in Distributed Systems
+# Transient Error Handling: The Importance of a Commonly Overlooked Practice in Distributed Systems
 Transient error handling in distributed systems is among the usual activities that need to be addressed to maintain consistency and reliability. However, most of the developers and software engineers do not take it seriously, and because of its negligence, disastrous consequences may occur on application stability and security.
 
 ### What are transient errors?
