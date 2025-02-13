@@ -1,4 +1,4 @@
-## Ensuring Idempotency in REST APIs: Why It Matters and How to Implement It in .NET
+# Ensuring Idempotency in REST APIs: Why It Matters and How to Implement It in .NET
 Idempotency is a key principle in the design of RESTful APIs that ensures stability and reliability for consumers. Alongside the concept of statelessness, idempotency plays a crucial role in preventing duplicate operations, especially in systems where network unreliability or retries can result in unintended behavior.
 
 In this article, we will explore what idempotency is, why it’s critical for REST APIs, and how you can implement it in a .NET application. We will also touch on the closely related concept of statelessness, which supports idempotent design in RESTful services.
