@@ -148,6 +148,9 @@ else
 ```
 
 ### Dependency Injection (DI)
+Dependency Injection (DI) is a software design pattern that promotes loose coupling, making code more maintainable, testable, and scalable. 
+Instead of a class creating its own dependencies, they are injected from the outside, often using an IoC (Inversion of Control) container.
+
 ❌ Bad Example:
 ```csharp
 public class UserService
@@ -180,6 +183,8 @@ public class UserService
 ```
 
 ### Using LINQ for Cleaner Code
+LINQ simplifies collection operations, improving readability and reducing boilerplate code when filtering, sorting, and transforming data.
+
 ❌ Bad Example:
 ```csharp
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
@@ -201,6 +206,9 @@ List<int> evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
 ```
 
 ### Using `async` and `await` for Better Performance
+Asynchronous programming enhances performance by preventing blocking operations, especially in I/O-bound tasks such as database queries or API calls. 
+Using async and await ensures non-blocking execution, making applications more responsive and scalable.
+
 ❌ Bad Example:
 ```csharp
 public string GetData()
@@ -216,6 +224,38 @@ public async Task<string> GetDataAsync()
 {
     await Task.Delay(5000);
     return "Data retrieved";
+}
+```
+
+### Early Termination
+Using early termination improves code readability by reducing nested conditions and making the intent clear.
+
+❌ Bad Example:
+```csharp
+public void ProcessOrder(Order order)
+{
+    if (order != null)
+    {
+        if (order.IsPaid)
+        {
+            if (!order.IsShipped)
+            {
+                ShipOrder(order);
+            }
+        }
+    }
+}
+```
+
+✅ Good Example:
+```csharp
+public void ProcessOrder(Order order)
+{
+    if (order == null) return;
+    if (!order.IsPaid) return;
+    if (order.IsShipped) return;
+
+    ShipOrder(order);
 }
 ```
 
