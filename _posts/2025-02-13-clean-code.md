@@ -259,6 +259,27 @@ public void ProcessOrder(Order order)
 }
 ```
 
+### Return Empty Collections Instead of Null
+When no data is available, return an empty collection rather than null to avoid errors and simplify client code.
+
+❌ Bad Example:
+```csharp
+public List<Order> GetOrders()
+{
+    // If there are no orders, returning null might force the caller to perform a null-check every time.
+    return null;
+}
+```
+
+✅ Good Example:
+```csharp
+public List<Order> GetOrders()
+{
+    // If there are no orders, returning an empty list makes it safe to iterate over the result.
+    return new List<Order>();
+}
+```
+
 ## Conclusion
 Applying clean code concepts to.NET improves the quality of the software, makes the codebase easier to comprehend and manage, and enables teamwork. 
 Adhering to best practices such as significant names, the Single Responsibility Principle, and exception handling improves the readability, maintainability, and performance of code.
