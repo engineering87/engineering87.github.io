@@ -1,7 +1,7 @@
 # Clean Code in .NET: Writing Maintainable and Scalable Software
 Writing clean code is essential for building maintainable, scalable, and efficient software solutions. 
 In .NET development, following clean code principles helps improve code readability, reduces technical debt, and better collaboration among developers. 
-This article explores key clean code principles and provides practical examples in .NET, referencing best practices from the [Clean Code .NET repository](https://github.com/thangchung/clean-code-dotnet).
+This article explores key clean code principles and provides practical examples in .NET, referencing best practices from the [Clean Code .NET repository](https://github.com/thangchung/clean-code-dotnet). We will cover several principles without following a strict order, focusing on their practical benefits and implementation.
 
 ## Core Principles of Clean Code
 ### Meaningful Naming
@@ -278,6 +278,88 @@ public List<Order> GetOrders()
     // If there are no orders, returning an empty list makes it safe to iterate over the result.
     return new List<Order>();
 }
+```
+
+### Use Multiple catch Blocks Instead of if Conditions
+Handling different exceptions using if conditions inside a single catch block makes the code harder to read and maintain. Instead, multiple catch blocks provide better clarity and separation of concerns.
+
+❌ Bad Example:
+```csharp
+try
+{
+    // Some code that may throw exceptions
+}
+catch (Exception ex)
+{
+    if (ex is ArgumentNullException)
+    {
+        Console.WriteLine("Argument cannot be null.");
+    }
+    else if (ex is InvalidOperationException)
+    {
+        Console.WriteLine("Invalid operation occurred.");
+    }
+    else
+    {
+        Console.WriteLine("An unexpected error occurred: " + ex.Message);
+    }
+}
+```
+
+✅ Good Example:
+```csharp
+try
+{
+    // Some code that may throw exceptions
+}
+catch (ArgumentNullException ex)
+{
+    Console.WriteLine("Argument cannot be null.");
+}
+catch (InvalidOperationException ex)
+{
+    Console.WriteLine("Invalid operation occurred.");
+}
+catch (Exception ex)
+{
+    Console.WriteLine("An unexpected error occurred: " + ex.Message);
+}
+```
+
+### Use Getters and Setters Instead of Public Fields
+Using public fields directly exposes internal data, making the code harder to maintain and violating encapsulation. Instead, getters and setters provide controlled access, improving flexibility and data integrity.
+
+❌ Bad Example:
+```csharp
+class Person
+{
+    public string Name;  // Directly exposed field
+}
+
+var person = new Person();
+person.Name = "John";  // No validation or control
+```
+
+✅ Good Example:
+```csharp
+class Person
+{
+    private string name;
+
+    public string Name
+    {
+        get => name;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException("Name cannot be empty.");
+            name = value;
+        }
+    }
+}
+
+var person = new Person();
+person.Name = "John";  // Controlled assignment
 ```
 
 ## Conclusion
