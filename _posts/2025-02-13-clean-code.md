@@ -362,6 +362,33 @@ var person = new Person();
 person.Name = "John";  // Controlled assignment
 ```
 
+### Use `Request` and `Response` Suffixes for DTOs
+When designing APIs and web services, using suffixes like Request and Response for Data Transfer Objects (DTOs) is a best practice that enhances code clarity and maintainability.
+
+❌ Bad Example:
+```csharp
+public class UserDTO  
+{  
+    public string UserName { get; set; }  
+    public string Email { get; set; }  
+}
+```
+
+✅ Good Example:
+```csharp
+public class CreateUserRequest  
+{  
+    public string UserName { get; set; }  
+    public string Email { get; set; }  
+}  
+
+public class CreateUserResponse  
+{  
+    public int UserId { get; set; }  
+    public string UserName { get; set; }  
+}  
+```
+
 ## Conclusion
 Applying clean code concepts to.NET improves the quality of the software, makes the codebase easier to comprehend and manage, and enables teamwork. 
 Adhering to best practices such as significant names, the Single Responsibility Principle, and exception handling improves the readability, maintainability, and performance of code.
