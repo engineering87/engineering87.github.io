@@ -30,6 +30,9 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
+google_analytics:
+  - G-75NCD8RQ5B
+  
 titles_from_headings:
   strip_title: true
   collections: true
