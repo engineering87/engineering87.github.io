@@ -1,4 +1,4 @@
-# Innovations in Caching: Microsoft's HybridCache
+# Innovations in Caching: Microsoft HybridCache
 **HybridCache** is a .NET library that combines the benefits of in-memory and distributed caching, simplifying cache management in .NET applications. 
 Beyond standard caching functionalities, HybridCache introduces several innovative features that enhance application performance and scalability.
 
