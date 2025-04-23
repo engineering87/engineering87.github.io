@@ -4,8 +4,6 @@ title: About me
 subtitle:
 ---
 
-👨‍💻 About Me
-
 I’m a Computer Engineer with a Master’s degree in Computer Engineering from La Sapienza – University of Rome, specializing in **Distributed Systems and Computer Architecture**.
 Currently, I serve as **Lead Execution Manager** at AlmavivA S.p.A., where I drive technological modernization and digital transformation initiatives within the Public Administration sector of the Welfare market.
 
