@@ -20,7 +20,7 @@ linkedin_username: "francesco-delre"
 #########################################################################################
 theme: "minima"
 
-rss: rss
+#rss: rss
 
 kramdown:
   syntax_highlighter_opts:
@@ -30,8 +30,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
-google_analytics:
-  - G-75NCD8RQ5B
+google_analytics: G-75NCD8RQ5B
   
 titles_from_headings:
   strip_title: true
