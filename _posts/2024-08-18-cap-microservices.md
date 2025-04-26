@@ -1,4 +1,6 @@
-## Navigating the CAP Theorem: Mastering Trade-offs in Microservices Architecture 
+## Navigating the CAP Theorem: Mastering Trade-offs in Microservices Architecture
+
+### ***short blog***
 
 To design microservices architectures it is essential to have certain knowledge regarding distributed systems engineering. 
 One of the too often underestimated aspects is that any distributed system, which by its nature is never fully synchronous, is not safe from network problems and must be designed to be 𝗳𝗮𝘂𝗹𝘁 𝘁𝗼𝗹𝗲𝗿𝗮𝗻𝘁.
