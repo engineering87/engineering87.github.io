@@ -1,6 +1,7 @@
 # Understanding JWT Tokens: A Practical Introduction with C# Examples
 Nowadays, with distributed systems and stateless APIs, it is very important to transmit information securely among parties. 
-As one of the most popular standards for that purpose, we have JSON Web Tokens. 
+As one of the most popular standards for that purpose, we have JSON Web Tokens.
+
 In this article, we will discuss the basics of JWT, use cases, and how to work with it in C# using [JwtInspector](https://github.com/engineering87/jwt-inspector).
 
 ## What is a JWT?
