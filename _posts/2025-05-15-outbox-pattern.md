@@ -136,16 +136,16 @@ These features align well with the event-driven goals of the Outbox Pattern.
 Here’s how Kafka fits into the Outbox flow:
 
 1. Service Transaction
-  - A domain event (e.g., OrderCreated) is saved to the OutboxMessages table as part of the same DB transaction.
+    - A domain event (e.g., OrderCreated) is saved to the OutboxMessages table as part of the same DB transaction.
 
 2. Outbox Publisher (Kafka Producer)
-  - A background service reads unprocessed messages from the outbox.
-  - Converts each message into a Kafka event.
-  - Publishes it to a Kafka topic (e.g., orders).
-  - Marks the message as processed once confirmed.
+    - A background service reads unprocessed messages from the outbox.
+    - Converts each message into a Kafka event.
+    - Publishes it to a Kafka topic (e.g., orders).
+    - Marks the message as processed once confirmed.
 
 3. Kafka Consumers
-  - Other microservices subscribe to the topic and react accordingly.
+    - Other microservices subscribe to the topic and react accordingly.
 
 ### Sample Kafka Producer in C#
 To publish outbox messages to Kafka, you can use the [Confluent.Kafka](https://www.nuget.org/packages/Confluent.Kafka/) NuGet package.
@@ -172,7 +172,7 @@ This ensures downstream consumers handle changes safely.
 
 ### Kafka Connect and CDC Alternative
 For high-scale scenarios, consider bypassing the custom outbox processor and using Kafka Connect with Debezium to stream changes from the database directly:
-- **Debezium** monitors the `OutboxMessages` table via Change Data Capture.
+- **Debezium** monitors the `OutboxMessages` table via **Change Data Capture**.
 - Kafka Connect publishes events automatically.
 - Ideal for cloud-native architectures with strong DevOps maturity.
 
