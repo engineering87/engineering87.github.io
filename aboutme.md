@@ -14,3 +14,5 @@ Currently, I serve as **Lead Execution Manager** at AlmavivA S.p.A., where I dri
 - Align technology strategies with the evolving needs of public services.
 
 My mission is to shape the future of digital public services through scalable, efficient, and sustainable technology solutions.
+
+🔗 You can also explore my projects and open-source contributions on GitHub: [github.com/engineering87](https://github.com/engineering87)
