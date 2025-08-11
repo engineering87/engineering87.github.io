@@ -14,3 +14,5 @@ this blog is your launchpad into the dynamic world of code and innovation.
 - Practical tips on modern development workflows
 - Reflections on technology trends and engineering culture
 - Hands-on guides and project showcases
+
+🔗 You can also explore my projects and open-source contributions on GitHub: [github.com/engineering87](https://github.com/engineering87)
