@@ -65,39 +65,39 @@ Every structure implements `ITimeQueryable<T>`, exposing consistent operations:
 This interface makes code collection agnostic, you can prototype with a queue and later swap to a sorted structure or an interval tree without rewriting queries.
 
 ## Provided Data Structures
-- **TemporalQueue<T>**
+- TemporalQueue<T>
   - ✅ Use when you need a thread-safe FIFO queue with time-based retrieval and cleanup.
   - ❌ Avoid if you need priority ordering or random access.
 
-- **TemporalStack<T>**
+- TemporalStack<T>
   - ✅ Use when you want a thread-safe LIFO stack with timestamp tracking and time-range queries.
   - ❌ Avoid if you require fast arbitrary removal or frequent sorting by timestamp.
 
-- **TemporalSet<T>**
+- TemporalSet<T>
   - ✅ Use for unique timestamped items with efficient membership checks and time-based removal.
   - ❌ Avoid if you need ordering or priority queues.
 
-- **TemporalSlidingWindowSet<T>**
+- TemporalSlidingWindowSet<T>
   - ✅ Use when you need to automatically retain only recent items within a fixed time window.
   - ❌ Avoid if your window size is highly dynamic or if you need sorted access.
 
-- **TemporalSortedList<T>**
+- TemporalSortedList<T>
   - ✅ Use for a sorted-by-timestamp collection with efficient binary-search range queries.
   - ❌ Avoid if insertion frequency is very high (O(n) inserts).
 
-- **TemporalPriorityQueue<T>**
+- TemporalPriorityQueue<T>
   - ✅ Use when you need priority-based ordering with timestamp-aware dequeueing.
   - ❌ Avoid if you only need FIFO/LIFO semantics without priorities.
 
-- **TemporalIntervalTree<T>**
+- TemporalIntervalTree<T>
   - ✅ Use for efficient interval overlap queries and session windows.
   - ❌ Avoid if your data are single points rather than intervals.
 
-- **TemporalDictionary<TKey, TValue>**
+- TemporalDictionary<TKey, TValue>
   - ✅ Use for key-based access combined with global time-range queries.
   - ❌ Avoid if you require a fully ordered view or range queries strictly sorted by timestamp.
 
-- **TemporalCircularBuffer<T>**
+- TemporalCircularBuffer<T>
   - ✅ Use for a fixed-size ring buffer that overwrites the oldest items.
   - ❌ Avoid if you need unbounded storage or complex queries.
 
@@ -110,7 +110,7 @@ dotnet add package TemporalCollections
 ```
 
 ### Basic usage
-**TemporalQueue<T>**
+TemporalQueue<T>
 
 ```csharp
 using System;
@@ -140,7 +140,8 @@ foreach (var item in inRange)
     Console.WriteLine($"In range: {item.Value} @ {item.Timestamp}");
 }
 ```
-**TemporalSet<T>**
+
+TemporalSet<T>
 
 ```csharp
 using System;
@@ -162,7 +163,7 @@ set.RemoveOlderThan(cutoff);
 var items = set.GetItems();
 ```
 
-**TemporalDictionary<TKey, TValue>**
+TemporalDictionary<TKey, TValue>
 
 ```csharp
 using System;
@@ -191,7 +192,7 @@ Console.WriteLine($"Span: {span}");
 dict.RemoveRange(from, to);
 ```
 
-**TemporalStack<T>**
+TemporalStack<T>
 
 ```csharp
 using System;
@@ -222,7 +223,7 @@ var cutoff = DateTime.UtcNow.AddMinutes(-10);
 stack.RemoveOlderThan(cutoff);
 ```
 
-**TemporalSlidingWindowSet<T>**
+TemporalSlidingWindowSet<T>
 
 ```csharp
 using System;
@@ -251,7 +252,7 @@ var inRange = swSet.GetInRange(from, to);
 swSet.RemoveOlderThan(DateTime.UtcNow.AddMinutes(-30));
 ```
 
-**TemporalSortedList<T>**
+TemporalSortedList<T>
 
 ```csharp
 using System;
@@ -279,7 +280,7 @@ list.RemoveOlderThan(DateTime.UtcNow.AddMinutes(-1));
 Console.WriteLine($"Span: {list.GetTimeSpan()}");
 ```
 
-**TemporalPriorityQueue<TPriority, TValue>**
+TemporalPriorityQueue<TPriority, TValue>
 
 ```csharp
 using System;
@@ -312,7 +313,7 @@ var items = pq.GetInRange(from, to);
 Console.WriteLine($"Count in range: {pq.CountInRange(from, to)}");
 ```
 
-**TemporalCircularBuffer<T>**
+TemporalCircularBuffer<T>
 
 ```csharp
 using System;
@@ -346,7 +347,7 @@ buf.RemoveRange(from, to);
 buf.RemoveOlderThan(DateTime.UtcNow.AddMinutes(-1));
 ```
 
-**TemporalIntervalTree<T>**
+TemporalIntervalTree<T>
 
 ```csharp
 using System;
