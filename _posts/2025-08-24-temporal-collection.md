@@ -65,17 +65,41 @@ Every structure implements `ITimeQueryable<T>`, exposing consistent operations:
 This interface makes code collection agnostic, you can prototype with a queue and later swap to a sorted structure or an interval tree without rewriting queries.
 
 ## Provided Data Structures
-| Collection Name             | When to Use                                                                                         | When Not to Use                                            |
-|-----------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| TemporalQueue<T>            | When you need a thread-safe FIFO queue with time-based retrieval and cleanup.                     | If you need priority ordering or random access.            |
-| TemporalStack<T>            | When you want a thread-safe LIFO stack with timestamp tracking and time-range queries.           | If you require fast arbitrary removal or sorting by timestamp. |
-| TemporalSet<T>              | When you need unique timestamped items with efficient membership checks and time-based removal.  | If you require ordering of elements or priority queues.     |
-| TemporalSlidingWindowSet<T> | When you want to automatically retain only recent items within a fixed time window.              | If your window size is highly variable or if you need sorted access. |
-| TemporalSortedList<T>       | When you need a sorted collection by timestamp with efficient range queries.                      | If insertions are very frequent and performance is critical (due to list shifting). |
-| TemporalPriorityQueue<T>    | When priority-based ordering with timestamp tracking is required for dequeueing.                 | If you only need FIFO or LIFO semantics without priorities. |
-| TemporalIntervalTree<T>     | When you need efficient interval overlap queries and interval-based time operations.             | If your data are single points rather than intervals.       |
-| TemporalDictionary<TKey, TValue> | When key-based access combined with timestamp tracking and querying is needed.              | If ordering or range queries by timestamp are required.     |
-| TemporalCircularBuffer<T>   | When you want a fixed-size buffer that overwrites oldest items with timestamp tracking.          | If you need unbounded storage or complex queries.           |
+- **TemporalQueue<T>**
+  - ✅ Use when you need a thread-safe FIFO queue with time-based retrieval and cleanup.
+  - ❌ Avoid if you need priority ordering or random access.
+
+- **TemporalStack<T>**
+  - ✅ Use when you want a thread-safe LIFO stack with timestamp tracking and time-range queries.
+  - ❌ Avoid if you require fast arbitrary removal or frequent sorting by timestamp.
+
+- **TemporalSet<T>**
+  - ✅ Use for unique timestamped items with efficient membership checks and time-based removal.
+  - ❌ Avoid if you need ordering or priority queues.
+
+- **TemporalSlidingWindowSet<T>**
+  - ✅ Use when you need to automatically retain only recent items within a fixed time window.
+  - ❌ Avoid if your window size is highly dynamic or if you need sorted access.
+
+- **TemporalSortedList<T>**
+  - ✅ Use for a sorted-by-timestamp collection with efficient binary-search range queries.
+  - ❌ Avoid if insertion frequency is very high (O(n) inserts).
+
+- **TemporalPriorityQueue<T>**
+  - ✅ Use when you need priority-based ordering with timestamp-aware dequeueing.
+  - ❌ Avoid if you only need FIFO/LIFO semantics without priorities.
+
+- **TemporalIntervalTree<T>**
+  - ✅ Use for efficient interval overlap queries and session windows.
+  - ❌ Avoid if your data are single points rather than intervals.
+
+- **TemporalDictionary<TKey, TValue>**
+  - ✅ Use for key-based access combined with global time-range queries.
+  - ❌ Avoid if you require a fully ordered view or range queries strictly sorted by timestamp.
+
+- **TemporalCircularBuffer<T>**
+  - ✅ Use for a fixed-size ring buffer that overwrites the oldest items.
+  - ❌ Avoid if you need unbounded storage or complex queries.
 
 ## 🚀 Getting Started with TemporalCollections
 This section shows how to install and use **TemporalCollections** in your .NET projects with simple examples.
