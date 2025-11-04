@@ -145,13 +145,15 @@ In most teams, performance tends to drift over time. A new feature might introdu
 These changes are rarely visible through functional tests alone. 
 Integrating benchmarks ensures that performance regressions are detected as early as functional bugs.
 
-1. Run Benchmarks Alongside Unit Tests
+1. **Run Benchmarks Alongside Unit Tests**
+   
 The first step is to treat benchmarks like any other form of validation.
 You can keep a Benchmarks project inside your solution, right next to your test projects. Developers can run it locally when they modify critical code paths, for example, data serialization, parsing, caching, or algorithms.
 BenchmarkDotNet projects build and run just like unit tests, but instead of pass/fail, they output numeric results.
 A good practice is to check those results into version control, so you have a historical view of how performance evolves.
 
-2. Automate Benchmark Runs in CI/CD
+2. **Automate Benchmark Runs in CI/CD**
+   
 Once the local workflow is stable, automate it.
 You can configure your CI pipeline (like GitHub Actions, Azure DevOps, or Jenkins) to:
 
@@ -162,25 +164,29 @@ You can configure your CI pipeline (like GitHub Actions, Azure DevOps, or Jenkin
 
 This transforms performance testing into a continuous quality signal, rather than a last-minute audit before release.
 
-3. Establish Baselines
+3. **Establish Baselines**
+   
 Benchmarks are meaningful only when compared against something.
 Define a baseline version of your application, perhaps the latest stable release or a known good commit, and store its benchmark results.
 Subsequent runs can be compared against that baseline to show whether a change improved or degraded performance.
 BenchmarkDotNet supports this directly through the `[Baseline]` attribute and relative comparison columns, but you can also manage it externally with exported data.
 
-4. Monitor Performance Trends Over Time
+4. **Monitor Performance Trends Over Time**
+   
 Beyond catching regressions, benchmarks can provide trend visibility.
 By tracking the same set of benchmarks across releases, you can observe how the system’s performance evolves, which areas are improving, which are degrading, and how architectural decisions impact real performance.
 You can even use tools like Power BI, Grafana, or Excel to visualize historical data exported from BenchmarkDotNet runs.
 This makes it easier to justify optimization work and demonstrate progress to non technical stakeholders.
 
-5. Keep Benchmarks Targeted and Maintainable
+5. **Keep Benchmarks Targeted and Maintainable**
+   
 Benchmarks should be small, isolated, and purposeful.
 Focus on code paths where performance matters, like loops, serialization, parsing, or algorithmic components.
 Avoid full end-to-end scenarios that mix CPU and I/O, which are better suited for load testing tools like NBomber or k6.
 Keep each benchmark reproducible and independent. The goal is to measure computation, not environment noise.
 
-7. Educate the Team
+6. **Educate the Team**
+   
 Finally, share the results with the team.
 BenchmarkDotNet produces readable Markdown reports that can be published automatically in your documentation or wiki.
 Use them during sprint reviews or retrospectives to highlight improvements or issues.
