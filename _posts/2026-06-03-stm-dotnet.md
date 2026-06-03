@@ -59,7 +59,7 @@ The platform also gives you the right primitives to implement it well. `Interloc
 
 At a high level the library is layered. A public surface sits on top of a transactional context, which drives a core protocol over the shared variables and a global clock.
 
-```mermaid
+<pre class="mermaid">
 flowchart TB
     subgraph Public["Public surface"]
         E[STMEngine<br/>Atomic / TryAtomic]
@@ -85,7 +85,7 @@ flowchart TB
     VAR --> CLK
     DICT --> VAR
     E --> D
-```
+</pre>
 
 The piece worth dwelling on is `STMVariable<T>`. Each variable holds its value together with a single 64-bit word that packs both a lock flag and a version number. The lowest bit is the lock, the rest is the version. Packing them together means a reader sees the lock state and the version in one atomic read, so it can never observe a version that belongs to a different lock state. The versions are not per-variable counters; they are stamps handed out by one process-wide clock, which makes any two versions across any two variables directly comparable. That comparability is the whole trick: a transaction can tell whether a variable changed since it started just by comparing stamps.
 
@@ -95,14 +95,14 @@ While it runs, a transaction touches no shared memory. It records what it reads 
 
 The flow of a single transaction is short. It samples a version, runs your code against a consistent snapshot, and then either commits or, if a read it depended on changed, throws the attempt away and runs again within its retry budget.
 
-```mermaid
+<pre class="mermaid">
 flowchart TD
     A([Start: sample version, run delegate]) --> B{Snapshot consistent<br/>through commit?}
     B -->|Yes| C([Publish writes, stamp version])
     B -->|No| D{Attempts below budget?}
     D -->|Yes| E[Backoff and retry] --> A
     D -->|No| F([Fail: throw or return false])
-```
+</pre>
 
 The detail that makes this safe to use with ordinary code is what happens on a bad read. When a transaction reads a variable whose version moved past its snapshot, it does not press on with stale data. It unwinds immediately and retries. This property is called opacity, and it means a transaction that is going to abort never runs your application logic on an inconsistent view. It cannot be tricked into an exception or an infinite loop by a concurrent commit, which is why you do not have to write defensive code inside a transaction.
 
@@ -110,7 +110,7 @@ The detail that makes this safe to use with ordinary code is what happens on a b
 
 The interesting work is at commit. A read-only transaction, or one that turned out to write nothing, has nothing to publish and commits for free, since every read was already checked against the start version. A read-write transaction goes through four steps.
 
-```mermaid
+<pre class="mermaid">
 sequenceDiagram
     participant T as Transaction
     participant V as STMVariable write set
@@ -127,7 +127,7 @@ sequenceDiagram
         T->>V: Release each lock, stamping the new version
         Note over T: Commit succeeds
     end
-```
+</pre>
 
 Locking several variables at once is where the deadlock question comes back, and the answer is the same total ordering that the manual lock-based transfer needed. The commit always takes its locks in increasing id order, so two committers can never form a wait cycle, and the one holding the lowest-id lock is always able to finish. The difference from the hand-written version is that the developer never sees this rule. It is a property of the engine, established in one place.
 
