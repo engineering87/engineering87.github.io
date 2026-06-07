@@ -1,38 +1,32 @@
-
 <!-- Site build date: {{ "now" | date: "%FT%T%z" }} -->
 <head>
+  
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Begin SEO -->
   {% seo %}
   <!-- End SEO -->
-
+  
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   <link rel="stylesheet" type="text/css" href="/css/override.css">
-
   {% feed_meta %}
-
   {% if jekyll.environment == 'production' and site.google_analytics -%}
   <!-- Begin Google Analytics -->
   {% include google-analytics.html %}
   <!-- End Google Analytics -->
   {%- endif %}
-
+  
   <!-- Begin highlight.js support -->
   <link rel="stylesheet" href="/js/highlightjs/styles/github.css">
   <link rel="stylesheet" href="/js/highlightjs/styles/ssms.css" />
-
   <script type="text/javascript" src="/js/highlightjs/highlight.min.js"></script>
-
   <script type="text/javascript" src="/js/highlightjs/languages/plaintext.min.js"></script>
   <script type="text/javascript" src="/js/highlightjs/languages/powershell.min.js"></script>
   <script type="text/javascript" src="/js/highlightjs/languages/tsql.min.js"></script>
-
   <script type="text/javascript"> hljs.highlightAll(); </script>
   <!-- end highlight.js support -->
-
+  
   {% if jekyll.environment == 'production' -%}
   <!-- dark theme using DarkReader -->
   <script src="//unpkg.com/darkreader@4.9.40/darkreader.js"></script>
@@ -42,16 +36,26 @@
     DarkReader.auto( {brightness: 100, contrast: 90, sepia: 10} );
   </script>
   {%- endif %}
-
-  <!-- MathJax for LaTeX math -->
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
-      "HTML-CSS": { availableFonts: ["TeX"] }
+  
+  <!-- KaTeX: renders kramdown's math/tex script tags, no runtime stylesheet injection -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", function () {
+      (function run() {
+        if (!window.katex) { setTimeout(run, 50); return; }
+        document.querySelectorAll('script[type^="math/tex"]').forEach(function (el) {
+          var display = el.type.indexOf("mode=display") !== -1;
+          var node = document.createElement(display ? "div" : "span");
+          try {
+            katex.render(el.textContent, node, { displayMode: display, throwOnError: false });
+          } catch (e) {
+            node.textContent = el.textContent;
+          }
+          el.parentNode.replaceChild(node, el);
+        });
+      })();
     });
   </script>
-  <script type="text/javascript" async
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-  </script>
-  
+
 </head>
