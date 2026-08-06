@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="300" fill="#ffffff"/>
+
+  <!-- goal -->
+  <rect x="20" y="130" width="100" height="44" rx="8" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+  <text x="70" y="158" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">Goal</text>
+  <line x1="120" y1="152" x2="144" y2="152" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- state -->
+  <rect x="150" y="120" width="140" height="64" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="220" y="158" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">State</text>
+  <line x1="290" y1="152" x2="334" y2="152" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- decide -->
+  <rect x="340" y="120" width="140" height="64" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <text x="410" y="158" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Decide</text>
+  <line x1="480" y1="152" x2="524" y2="152" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="502" y="144" font-size="11" fill="#475569" text-anchor="middle">action</text>
+
+  <!-- act -->
+  <rect x="530" y="120" width="140" height="64" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="600" y="158" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Act</text>
+  <line x1="670" y1="152" x2="714" y2="152" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="692" y="144" font-size="11" fill="#475569" text-anchor="middle">effect</text>
+
+  <!-- observe -->
+  <rect x="720" y="120" width="140" height="64" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="790" y="158" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Observe</text>
+
+  <!-- return path -->
+  <path d="M 790 184 L 790 248 L 220 248 L 220 190" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="505" y="268" font-size="12" fill="#475569" text-anchor="middle">what actually happened</text>
+
+  <!-- exit -->
+  <rect x="340" y="26" width="140" height="44" rx="8" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+  <text x="410" y="54" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">Result</text>
+  <line x1="410" y1="120" x2="410" y2="76" stroke="#334155" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="422" y="102" font-size="11" fill="#475569">when done</text>
+</svg>

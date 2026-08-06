@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 690" width="1000" height="690" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+    <marker id="arrowLight" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="690" fill="#ffffff"/>
+
+  <!-- agent boundary -->
+  <rect x="170" y="110" width="520" height="470" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="186" y="134" font-size="12" fill="#64748b" letter-spacing="0.6">AGENT RUNTIME</text>
+
+  <!-- goal -->
+  <rect x="250" y="30" width="240" height="48" rx="8" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+  <text x="370" y="60" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Goal</text>
+  <line x1="370" y1="78" x2="370" y2="144" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- working state -->
+  <rect x="250" y="150" width="240" height="66" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="370" y="177" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Working state</text>
+  <text x="370" y="197" font-size="12" fill="#475569" text-anchor="middle">actions taken, results observed</text>
+  <line x1="370" y1="216" x2="370" y2="244" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- decision -->
+  <rect x="250" y="250" width="240" height="66" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <text x="370" y="277" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Decision</text>
+  <text x="370" y="297" font-size="12" fill="#92400e" text-anchor="middle">the only stochastic component</text>
+  <line x1="370" y1="316" x2="370" y2="350" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="382" y="338" font-size="12" fill="#475569">next action</text>
+
+  <!-- control gate -->
+  <rect x="250" y="356" width="240" height="76" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="370" y="383" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Control gate</text>
+  <text x="370" y="403" font-size="12" fill="#475569" text-anchor="middle">step, time, and spend limits</text>
+  <text x="370" y="420" font-size="12" fill="#475569" text-anchor="middle">authority over irreversible actions</text>
+  <line x1="370" y1="432" x2="370" y2="466" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- tool layer -->
+  <rect x="250" y="472" width="240" height="66" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="370" y="499" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Tool layer</text>
+  <text x="370" y="519" font-size="12" fill="#475569" text-anchor="middle">contracts the model reads</text>
+
+  <!-- exits on the left -->
+  <rect x="20" y="250" width="130" height="66" rx="8" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+  <text x="85" y="280" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">Result</text>
+  <text x="85" y="299" font-size="12" fill="#475569" text-anchor="middle">task finished</text>
+  <line x1="250" y1="283" x2="156" y2="283" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="203" y="274" font-size="12" fill="#475569" text-anchor="middle">final</text>
+
+  <rect x="20" y="356" width="130" height="76" rx="8" fill="#e2e8f0" stroke="#334155" stroke-width="1.5"/>
+  <text x="85" y="384" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">Stop report</text>
+  <text x="85" y="403" font-size="12" fill="#475569" text-anchor="middle">state reached,</text>
+  <text x="85" y="420" font-size="12" fill="#475569" text-anchor="middle">work remaining</text>
+  <line x1="250" y1="394" x2="156" y2="394" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="203" y="385" font-size="12" fill="#475569" text-anchor="middle">limit</text>
+
+  <!-- environment -->
+  <rect x="720" y="472" width="240" height="66" rx="8" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="840" y="499" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">Environment</text>
+  <text x="840" y="519" font-size="12" fill="#475569" text-anchor="middle">systems you do not control</text>
+
+  <line x1="490" y1="505" x2="714" y2="505" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="602" y="496" font-size="12" fill="#475569" text-anchor="middle">real effect</text>
+
+  <!-- observation return path -->
+  <path d="M 840 472 L 840 410 L 610 410 L 610 183 L 496 183" fill="none" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="622" y="384" font-size="12" fill="#475569">observation of what actually happened,</text>
+  <text x="622" y="401" font-size="12" fill="#475569">including failures</text>
+
+  <!-- trace -->
+  <line x1="430" y1="580" x2="430" y2="604" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrowLight)"/>
+  <rect x="170" y="610" width="520" height="54" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="430" y="633" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">Trace</text>
+  <text x="430" y="652" font-size="12" fill="#475569" text-anchor="middle">state, decision, arguments, result, and cost of every step</text>
+
+  <!-- legend -->
+  <rect x="720" y="596" width="240" height="70" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <line x1="736" y1="620" x2="762" y2="620" stroke="#b45309" stroke-width="2"/>
+  <text x="772" y="624" font-size="12" fill="#475569">not deterministic</text>
+  <line x1="736" y1="646" x2="762" y2="646" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="772" y="650" font-size="12" fill="#475569">outside your control</text>
+</svg>
